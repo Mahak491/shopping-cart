@@ -1,6 +1,6 @@
 let shop = document.getElementById("shop");
 
-let basket = JSON.parse(localStorage.getItem("data")) || [];
+let basket = JSON.parse(localStorage.getItem("data")) || []; // retrieving the data from local storage
 
 let generateShop = () => {
   return (shop.innerHTML = shopItemsData
@@ -18,7 +18,7 @@ let generateShop = () => {
             <div class="buttons">
               <i onclick="decrement(${id})" class="bi bi-dash-lg"></i>
               <div id=${id} class="quantity">
-              ${search.item === undefined ? 0 : search.item}
+              ${search.item === undefined ? 0 : search.item}o
               </div>
               <i onclick="increment(${id})" class="bi bi-plus-lg"></i>
             </div>
@@ -46,19 +46,19 @@ let increment = (id) => {
   }
 
   update(selectedItem.id);
-  localStorage.setItem("data", JSON.stringify(basket));
+  localStorage.setItem("data", JSON.stringify(basket));//used to set the item to store data in local storage
 };
 let decrement = (id) => {
     let selectedItem = id;
     let search = basket.find((x) => x.id === selectedItem.id);
   
-    if (search === undefined) return;
+    if (search === undefined) return;//if basket is empty simply return
     else if (search.item === 0) return;
     else {
       search.item -= 1;
     }
     update(selectedItem.id);
-    basket = basket.filter((x) => x.item !== 0);
+    basket = basket.filter((x) => x.item !== 0);//select all the items which doesn't have zero items in the basket
     localStorage.setItem("data", JSON.stringify(basket));
   };
   let update = (id) => {
@@ -68,6 +68,8 @@ let decrement = (id) => {
   };
   
   let calculation = () => {
-    let cartIcon = document.getElementById("cartAmount");
-    cartIcon.innerHTML = basket.map((x) => x.item).reduce((x, y) => x + y, 0);
+    let cartIcon = document.getElementById("cartAmount");//selecting our icon
+    cartIcon.innerHTML = basket.map((x) => x.item).reduce((x, y) => x + y, 0);//we want the calculation from 0
   };
+
+  calculation();
