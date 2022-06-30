@@ -1,2 +1,2 @@
 # shopping-cart
- made shopping mart with JavaScript
+ made shopping cart with JavaScript
